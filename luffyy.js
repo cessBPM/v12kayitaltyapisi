@@ -133,48 +133,11 @@ client.on("ready", () => {
 ///----------------------- HOŞGELDİN MESAJI KISMI -----------------------\\\\  
 
 
-
-client.on('guildMemberAdd', async member => {//alıntıdır!!!!!
-   await member.roles.add(ayarlar.kayıtsızrol) 
-   await member.setNickname(`İsim | Yaş`) //Bu Komut Sunucuya Gelen Kişinin İsmini Düzenler Değiştirebilirsiniz!
-let member2 = member.user 
-let sunuc = ayarlar.sunucuismi
-let yetkili = ayarlar.yetkilirol
-let zaman = new Date().getTime() - member2.createdAt.getTime()
-var user = member2 
-var takizaman = [];
-if(zaman < 604800000) {
-takizaman = 'Bu Kullanıcı Şüpheli!'
-} else {
-takizaman = `Bu Kullanıcı Güvenli!`}require("moment-duration-format");
-  let zaman1 = new Date().getTime() - user.createdAt.getTime()
-  const gecen = moment.duration(zaman1).format(` YY **[Yıl,]** DD **[Gün,]** HH **[Saat,]** mm **[Dakika,]** ss **[Saniye]**`) 
-  let dbayarfalanfilan = await db.fetch(`takidbayar${member.guild.id}`)
-  let message = member.client.channels.cache.get(ayarlar.girişkanal) 
-   const kevzyy = new kevzyy.MessageEmbed()
-    .setTitle(
-      `WELCOME TO ${sunuc}`
-    )
-    .setDescription(`
-Sunucumuza Hoş geldin ${member} 
-
-Seninle Beraber **${message.guild.memberCount}** Kişiyiz.
-
-Kaydının Yapılması İçin Sesli Odaya Geçerek Ses Vermen Gerekli.
-
-<@&${yetkili}> Rolündeki Yetkililer Seninle İlgilenecektir.
-
-Hesap Açılalı: **${gecen}** Olmuş.
-Bu Kullanıcı: **${takizaman}**
-`)
-.setColor('2f3136')
-message.send(kevzyy)
-  
-          });
-
 ////----------------------- HOŞGELDİN MESAJI KISMI -----------------------\\\\ 
 
 client.on('guildMemberAdd', async member => {//burayı elleme!!!
   let yetkili = ayarlar.yetkilirol
-  client.channels.cache.get(ayarlar.girişkanal).send(`<@&${yetkili}>`)
+  client.channels.cache.get(ayarlar.girişkanal).send(`Sunucumuza Hoş geldin ${member}, Seninle Beraber **${message.guild.memberCount}** Kişiyiz. \t\t
+ Kaydının Yapılması İçin İsim vermen Gerekli. \t\t
+ Yetkililer Seninle İlgilenecektir. <@&${yetkili}>`)
 })
